@@ -32,7 +32,6 @@ object EventTimeHeartBeatExample {
 
     val properties = new Properties
     properties.setProperty("bootstrap.servers", kafkaServerURL + ":" + kafkaServerPort)
-    properties.setProperty("zookeeper.connect", "localhost:2181")
     properties.setProperty("group.id", groupId)
 
     println("kafkaTopic:" + kafkaTopic)
