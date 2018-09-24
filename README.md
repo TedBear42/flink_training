@@ -71,7 +71,7 @@ The most basic example is com.tmalaska.flinktraining.example.wordcount.SimpleWor
 This example uses basic processing time and a count window.  To start it use the following parameters
 
 ```
-126.0.0.1 9092 flink_training group_id
+localhost 9092 flink_training group_id tumbleTime
 ```
 
 These parameters are 
@@ -79,6 +79,7 @@ These parameters are
 - Kafka Broker Port
 - Kafka Topic
 - Kafka Consumer Group
+- The type of window: tumbleTime, slidingCount, slidingTime, count
 
 ### Trigger Evict Word Count Example
 The most basic example is com.tmalaska.flinktraining.example.wordcount.TriggerEvictWordCount
@@ -86,7 +87,7 @@ The most basic example is com.tmalaska.flinktraining.example.wordcount.TriggerEv
 This example shows how to use triggers and evict to control the window
 
 ```
-126.0.0.1 9092 flink_training group_id
+localhost 9092 flink_training group_id
 ```
 
 These parameters are 
@@ -101,7 +102,7 @@ The most basic example is com.tmalaska.flinktraining.example.wordcount.Streaming
 This example uses append only SQL to simpliy code
 
 ```
-126.0.0.1 9092 flink_training group_id
+localhost 9092 flink_training group_id
 ```
 
 These parameters are 
@@ -116,7 +117,7 @@ The most basic example is com.tmalaska.flinktraining.example.wordcount.MapWithSt
 This example shows us how to use the MapWithState method and the Keyed State Values
 
 ```
-126.0.0.1 9092 flink_training group_id
+localhost 9092 flink_training group_id
 ```
 
 These parameters are 
@@ -143,7 +144,7 @@ com.tmalaska.flinktraining.example.session package.
 
 We will need to give SessionKafkaProducer the following parameters
 ```
-126.0.0.1 9092 flink_training 10 100 1000 4
+localhost 9092 flink_training 10 100 1000 4
 ```
 
 The parameters are as follows:
@@ -171,7 +172,7 @@ control of or in memory window.
 The class is com.tmalaska.flinktraining.example.session.StreamingSessionExample
 
 ```
-126.0.0.1 9092 flink_training group_id 10000
+localhost 9092 flink_training group_id 10000
 ```
 
 These parameters are 
@@ -187,7 +188,7 @@ Lastly is a event time example with our session data.
 Use com.tmalaska.flinktrainingBeatExample
 
 ```
-126.0.0.1 9092 flink_training group_id
+localhost 9092 flink_training group_id
 ```
 
 These parameters are 

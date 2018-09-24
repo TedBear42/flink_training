@@ -64,10 +64,10 @@ object EventTimeHeartBeatExample {
       keyValuePair.countWindow(5, 2).sum(1)
     } else if (typeOfWindow.equals("tumbleTime")) {
       //Tumble by time.  Trigger and Slide by 5 seconds
-      keyValuePair.timeWindow(new Time(5, TimeUnit.SECONDS)).sum(1)
+      keyValuePair.timeWindow(Time.of(5, TimeUnit.SECONDS)).sum(1)
     } else if (typeOfWindow.equals("slidingTime")) {
       //Slide by time.  Have a sliding window of 5 seconds that tiggers every 2 seconds
-      keyValuePair.timeWindow(new Time(5, TimeUnit.SECONDS), new Time(2, TimeUnit.SECONDS)).sum(1)
+      keyValuePair.timeWindow(Time.of(5, TimeUnit.SECONDS), Time.of(2, TimeUnit.SECONDS)).sum(1)
     } else {
       //Tumble by time.  Trigger every 5 seconds
       keyValuePair.countWindow(5).sum(1)

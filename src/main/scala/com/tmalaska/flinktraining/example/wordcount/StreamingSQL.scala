@@ -27,7 +27,6 @@ object StreamingSQL {
 
     val properties = new Properties
     properties.setProperty("bootstrap.servers", kafkaServerURL + ":" + kafkaServerPort)
-    properties.setProperty("zookeeper.connect", "localhost:2181")
     properties.setProperty("group.id", groupId)
 
     println("kafkaTopic:" + kafkaTopic)
@@ -39,9 +38,14 @@ object StreamingSQL {
 
     tableEnv.registerDataStream("myTable2", entityCountStream, 'word, 'frequency)
 
-    val roleUp: Table = tableEnv.sql("SELECT word, SUM(frequency) FROM myTable2 GROUP BY word")
+    val roleUp: Table = tableEnv.sqlQuery("SELECT word, SUM(frequency) FROM myTable2 GROUP BY word")
 
-    roleUp.addSink(new CustomSinkFunction)
+    val typeInfo = createTypeInformation[(String, Int)]
+    val outStream = roleUp.toRetractStream(typeInfo)
+
+    outStream.print()
+
+    env.execute("Scala SQL Example")
 
   }
 }
