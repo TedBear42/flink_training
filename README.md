@@ -10,7 +10,7 @@ To make it easy for people we will use Docker to install and run Kafka
 The following command will download, install, and run a Kafka Container to your local.
 
 ```  
-docker run -p 2181:2181 -p 9092:9092 --env ADVERTISED_HOST=127.0.0.1 --env ADVERTISED_PORT=9092 --name mylocal -d spotify/kafka
+docker run -p 2181:2181 -p 9092:9092 --env ADVERTISED_HOST=127.0.0.1 --env ADVERTISED_PORT=9092 --name mykafka -d spotify/kafka
 ```
 
 To see the container running you can use the docker ps cmd line function
@@ -29,7 +29,7 @@ The following command will log you into the container using the bash terminal an
 to set up a topic
 
 ```
-docker exec -it local_kafka bash
+docker exec -it mykafka bash
 
 cd /opt/kafka_2.11-0.10.1.0/bin
 
