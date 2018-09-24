@@ -40,7 +40,7 @@ object TriggerEvictWordCount {
     //Link to Evictor API page https://ci.apache.org/projects/flink/flink-docs-release-1.3/api/java/org/apache/flink/streaming/api/windowing/evictors/Evictor.html
 
     val keyValuePair = wordsStream.keyBy(0).window(GlobalWindows.create()).
-      trigger(CountTrigger.of(5)).evictor(CountEvictor.of(10))
+      trigger(CountTrigger.of(5)).evictor(CountEvictor.of(50))
 
     val countPair = keyValuePair.sum(1)
 
