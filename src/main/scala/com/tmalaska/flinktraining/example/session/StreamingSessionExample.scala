@@ -38,7 +38,7 @@ object StreamingSessionExample {
     val heartBeatStream = messageStream
       .map(str => {
         implicit val formats = DefaultFormats
-        //println("str:" + str)
+        println("str:" + str)
         val hb = read[HeartBeat](str)
         (hb.entityId, hb.eventTime)
       }).keyBy(0).process(new MyProcessFunction(sessionTimeOut))
@@ -70,11 +70,9 @@ class MyProcessFunction(sessionTimeOut:Int) extends ProcessFunction[(String,Long
     val currentSession = state.value()
     var outBoundSessionRecord:SessionObj = null
     if (currentSession == null) {
-      val heartBeatTime = value._2
-      outBoundSessionRecord = SessionObj(heartBeatTime, heartBeatTime, 1)
+      outBoundSessionRecord = SessionObj(value._2, value._2, 1)
     } else {
-      val heartBeatTime = value._2
-      outBoundSessionRecord = SessionObj(currentSession.startTime, heartBeatTime, currentSession.heartbeatCount + 1)
+      outBoundSessionRecord = SessionObj(currentSession.startTime, value._2, currentSession.heartbeatCount + 1)
 
     }
     state.update(outBoundSessionRecord)
